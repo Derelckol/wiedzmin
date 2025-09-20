@@ -1,0 +1,263 @@
+:root{
+  --c-header: #8B0000;
+  --c-aside:  #818181;
+  --c-accent: #e7e7e7;
+  --c-main:   #ffffff;
+  --c-text:   #000000;
+  --c-border: #a9b3c1;
+
+  --gap:  4px;
+
+  --h-header: 80px;   
+  --h-footer: 72px;   
+
+  --col-left:  220px; 
+  --col-right: 220px;
+
+  --badge-w: clamp(300px, 32vw, 600px);
+  --badge-fs: clamp(16px, 1.6vw, 22px); 
+  --badge-py: 8px;
+  --badge-px: 12px;
+  --badge-radius: 6px;
+}
+
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+html, body{
+  margin: 0;
+  padding: 0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  color: var(--c-text);
+}
+
+.wrapper{
+  width: 100%;
+  margin: 0;
+  padding: 0; 
+}
+
+.header, .asideTop, .asideLong, .aside, .main, .footband, .footer{
+  overflow-wrap: break-word;
+}
+
+.main, .aside, .asideLong { min-width: 0; }
+
+.grid{
+  display: grid;
+  grid-template-columns: var(--col-left) 1fr var(--col-right);             
+  grid-template-rows: var(--h-header) auto 1fr auto var(--h-footer);       
+  grid-template-areas:
+    "header header header"
+    "asideTop main   aside"
+    "asideLong main  aside"
+    "asideLong footband aside"
+    "footer footer footer";
+  gap: var(--gap);
+  min-height: 100vh;
+}
+
+.header{
+  grid-area: header;
+  padding: 14px 18px;
+  background: var(--c-header);
+  border: 1px solid var(--c-border);
+  border-radius: 8px;
+
+  height: 100%;
+  min-height: 0;
+  overflow: hidden;
+
+  display: grid;
+  grid-template-columns: 1fr var(--badge-w);
+  align-items: center;
+  column-gap: 12px;
+}
+
+.header h1{ margin: 0; font-size: clamp(20px, 2.4vw, 28px); }
+
+.header > p{
+  margin: 0;
+  min-width: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.header .slogan{
+  box-sizing: border-box;
+  position: static;
+  justify-self: end;          
+  inline-size: 100%;          
+  padding: var(--badge-py) var(--badge-px);
+  background: #fff;
+  border: 1px solid var(--c-border);
+  border-radius: var(--badge-radius);
+  font-weight: 600;
+  font-size: var(--badge-fs);
+  line-height: 1.2;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+
+.header .slogan :is(h1,h2,h3,h4,h5,h6){ margin: 0; font: inherit; line-height: inherit; }
+
+.asideTop{
+  grid-area: asideTop;
+  padding: 8px;
+  background: var(--c-accent);
+  border: 1px solid var(--c-border);
+  border-radius: 6px;
+}
+
+.asideLong{
+  grid-area: asideLong;
+  padding: 10px;
+  background: var(--c-aside);
+  border: 1px solid var(--c-border);
+  border-radius: 6px;
+}
+
+.aside{
+  grid-area: aside;
+  padding: 10px;
+  background: var(--c-aside);
+  border: 1px solid var(--c-border);
+  border-radius: 6px;
+}
+
+.main{
+  grid-area: main;
+  padding: 16px;
+  background: var(--c-main);
+  border: 1px solid var(--c-border);
+  border-radius: 6px;
+}
+
+.footband{
+  grid-area: footband;
+  padding: 10px;
+  background: var(--c-accent);
+  border: 1px solid var(--c-border);
+  border-radius: 6px;
+}
+
+.footer{
+  grid-area: footer;
+  padding: 14px 18px;
+  background: var(--c-header);
+  border: 1px solid var(--c-border);
+  border-radius: 8px;
+
+  height: 100%;
+  min-height: 0;
+  overflow: hidden;
+
+  display: grid;
+  grid-template-columns: 1fr var(--badge-w);
+  align-items: center;
+  column-gap: 12px;
+}
+
+.footer > strong{
+  margin: 0;
+  min-width: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.footer .footer-note{
+  box-sizing: border-box;
+  position: static;
+  justify-self: end;
+  inline-size: 100%;
+  padding: var(--badge-py) var(--badge-px);
+  background: #fff;
+  border: 1px solid var(--c-border);
+  border-radius: var(--badge-radius);
+  font-weight: 600;
+  font-size: var(--badge-fs);
+  line-height: 1.2;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.footer .footer-note :is(h1,h2,h3,h4,h5,h6){ margin: 0; font: inherit; line-height: inherit; }
+.menu{
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.menu a{
+  display: block;
+  padding: 10px 12px;
+  color: inherit;
+  text-decoration: none;
+  background: #fff;
+  border: 1px solid var(--c-border);
+  border-radius: 6px;
+  transition: transform 120ms ease;
+}
+.menu a.active{ outline: 2px solid #374151; }
+.menu a:hover { transform: translateY(-1px); }
+
+.main_gallery,
+.books_gallery,
+.monsters_gallery,
+.ch_gallery{
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+.main_gallery figure,
+.books_gallery figure,
+.monsters_gallery figure,
+.ch_gallery figure{
+  width: 200px;
+  text-align: center;
+  margin: 0;
+}
+.main_gallery img,
+.books_gallery img,
+.monsters_gallery img,
+.ch_gallery img{
+  max-width: 100%;
+  border-radius: 8px;
+  display: block;
+}
+
+.world_gallery{
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+.world_gallery figure{
+  width: 100%;
+  max-width: none;  
+  margin: 0 auto;
+  text-align: center;
+}
+.world_gallery img{
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 8px;
+}
+
+@media (max-width: 900px){
+  .grid{
+    grid-template-columns: 1fr;
+    grid-template-rows: var(--h-header) auto auto auto 1fr auto var(--h-footer);
+    grid-template-areas:
+      "header"
+      "asideTop"
+      "asideLong"
+      "aside"
+      "main"
+      "footband"
+      "footer";
+  }
+  :root{ --badge-w: 60%; }
+}
